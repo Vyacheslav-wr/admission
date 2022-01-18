@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Faculty</title>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="/icons/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+<header>
+    <div class="header" th:insert="parts/header.html :: header"></div>
+</header>
+<div>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="top: 70px; position: absolute">
+                <form  class="login100-form validate-form" th:action="'/' + ${facultyId} + '/subjects/new'" method="post">
+                    <div th:each="number:${numbers}">
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <span class="label-input100" th:text="${subjects.get(number).getType().toString()}"></span>
+                            <input class="input100" type="number" th:name="'score' + ${number}" placeholder="Type your score">
+                            <span class="focus-input100" data-symbol="&#xf190;"></span>
+                        </div>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn" type="submit">
+                                Register to faculty
+                            </button>
+                        </div>
+                    </div>
+                    <div class="wrap-input100 validate-input" th:if="${registered} ne null">
+                        <span th:style="'color: red'" th:text="${registered}" class="label-input100"/>
+                    </div>
+                    <div class="wrap-input100 validate-input" th:if="${many} ne null">
+                        <span th:style="'color: red'" th:text="${many}" class="label-input100"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="footer" th:insert="parts/footer.html :: footer"></div>
+</footer>
+</body>
+</html>
